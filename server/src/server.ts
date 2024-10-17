@@ -19,14 +19,13 @@ const startApolloServer = async () => {
 
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
+  
+  app.use(express.static(path.join(process.cwd(), '../client/dist')));
 
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/dist')));
-
-    app.get('*', (_req, res) => {
-      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-    });
-  }
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(process.cwd(), '../client/dist/index.html'));
+  });
+  
 
   app.use('/graphql', expressMiddleware(server, { context: authenticateToken }));
 
