@@ -2,20 +2,11 @@ import { jwtDecode } from 'jwt-decode';
 import { useCallback } from 'react';
 
 interface UserToken {
-    name: string;
-    exp: number;
-  }
+  name: string;
+  exp: number;
+}
 
 export default function useAuth() {
-  const getProfile = useCallback(() => {
-    return jwtDecode(getToken() ?? '');
-  }, []);
-
-  const loggedIn = useCallback(() => {
-    const token = getToken();
-    return !!token && !isTokenExpired(token);
-  }, []);
-
   const isTokenExpired = useCallback((token: string) => {
     try {
       const decoded = jwtDecode<UserToken>(token);
@@ -33,6 +24,11 @@ export default function useAuth() {
     return localStorage.getItem('id_token');
   }, []);
 
+  const loggedIn = useCallback(() => {
+    const token = getToken();
+    return !!token && !isTokenExpired(token);
+  }, []);
+
   const login = useCallback((idToken: string) => {
     localStorage.setItem('id_token', idToken);
     window.location.assign('/');
@@ -43,6 +39,5 @@ export default function useAuth() {
     window.location.assign('/');
   }, []);
 
-
-  return { getProfile, loggedIn, isTokenExpired, getToken, login, logout }
+  return { getToken, loggedIn, login, logout };
 }

@@ -24,7 +24,7 @@ const SavedBooks = () => {
 
   const handleDeleteBook = async (_id: string) => {
     try {
-      const {data} = await removeBook({ variables: { bookId: _id } });
+      const { data } = await removeBook({ variables: { bookId: _id } });
       setSavedBooks(data.removeBook.savedBooks);
     } catch (err) {
       console.error(err);
