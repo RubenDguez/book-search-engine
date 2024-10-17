@@ -8,7 +8,7 @@
 ![Apollo-GraphQL](https://img.shields.io/badge/API-GraphQL-orange)
 ![React](https://img.shields.io/badge/frontend-React-blue)
 ![Node.js](https://img.shields.io/badge/backend-Node.js-yellow)
-![npm](https://img.shields.io/badge/npm-v7.0.0-blue)
+![npm](https://img.shields.io/badge/npm-v10.8.3-blue)
 
 ## Description
 
@@ -27,6 +27,7 @@ As an avid reader, I want to search for new books to read so that I can keep a l
 - [Screenshots](#screenshots)
 - [Deployment](#deployment)
 - [License](#license)
+- [Questions](#questions)
 
 ## Installation
 
@@ -96,3 +97,8 @@ The app is deployed using Render and MongoDB Atlas. Access the live application 
 ## License
 
 This project is licensed under the MIT License.
+
+## Questions
+
+- If you have further questions, you can contact me at: argenis.dominguez@hotmail.com
+- This is my GitHub profile: [RubenDguez](https://github.com/RubenDguez)
