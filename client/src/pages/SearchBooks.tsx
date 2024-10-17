@@ -2,10 +2,10 @@ import { useMutation, useQuery } from '@apollo/client';
 import type { FormEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
+import useAuth from '../hooks/useAuth';
 import type { Book } from '../models/Book';
 import type { GoogleAPIBook } from '../models/GoogleAPIBook';
 import { searchGoogleBooks } from '../utils/API';
-import Auth from '../utils/auth';
 import { SAVE_BOOK } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
 
@@ -14,6 +14,7 @@ const SearchBooks = () => {
   const [searchInput, setSearchInput] = useState('');
   const [savedBooks, setSavedBooks] = useState<Array<string>>([]);
 
+  const { loggedIn } = useAuth();
   const { data, loading } = useQuery(GET_ME);
   const [saveBook] = useMutation(SAVE_BOOK);
 
@@ -59,7 +60,7 @@ const SearchBooks = () => {
   };
 
   useEffect(() => {
-    if (!loading && Auth.loggedIn()) {
+    if (!loading && loggedIn()) {
       const bookLinks = data.me.savedBooks.map((book: any) => book.link);
       setSavedBooks(bookLinks);
     }
@@ -99,7 +100,7 @@ const SearchBooks = () => {
                     <Card.Title>{book.title}</Card.Title>
                     <p className="small">Authors: {book.authors}</p>
                     <Card.Text>{book.description}</Card.Text>
-                    {Auth.loggedIn() && (
+                    {loggedIn() && (
                       <Button disabled={savedBooks.includes(book.bookId)} className="btn-block btn-info" onClick={() => handleSaveBook(book.bookId)}>
                         {savedBooks.includes(book.bookId) ? 'This book has already been saved!' : 'Save this Book!'}
                       </Button>
