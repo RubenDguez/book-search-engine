@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import path from 'node:path';
 
-dotenv.config();
-
+dotenv.config({ path: path.join(process.cwd(), '.env') });
 const MONGODB_URI = process.env.MONGODB_URI!;
 
 const db = async (): Promise<typeof mongoose.connection> => {

@@ -1,10 +1,13 @@
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
+import dotenv from 'dotenv';
 import express from 'express';
 import path from 'node:path';
 import db from './config/connection.js';
 import { resolvers, typeDefs } from './schemas/index.js';
 import { authenticateToken } from './utils/auth.js';
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 const app = express();
