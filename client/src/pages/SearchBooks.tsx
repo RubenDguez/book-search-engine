@@ -15,7 +15,7 @@ const SearchBooks = () => {
   const [savedBooks, setSavedBooks] = useState<Array<string>>([]);
 
   const { loggedIn } = useAuth();
-  const { data, loading } = useQuery(GET_ME);
+  const { data, loading } = useQuery(GET_ME, { fetchPolicy: 'no-cache' });
   const [saveBook] = useMutation(SAVE_BOOK);
 
   // create method to search for books and set state on form submit
